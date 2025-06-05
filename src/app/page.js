@@ -53,14 +53,16 @@ export default function Home() {
       className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center"
       onClick={() => setMenuOpen(false)}
     >
-      <motion.div
-        initial={{ y: -100, x: 200, opacity: 0 }}
-        animate={{ y: 0, x: 0, opacity: 1 }}
-        exit={{ y: -50, opacity: 0 }}
-        transition={{ duration: 0.6, ease: "easeInOut" }}
-        className="bg-white text-black w-full max-w-full h-[100vh] rounded-2xl p-10 relative overflow-y-auto flex flex-col justify-center items-center"
-        onClick={(e) => e.stopPropagation()}
-      >
+     <motion.div
+  initial={{ y: -100, x: 200, opacity: 0 }}
+  animate={{ y: 0, x: 0, opacity: 1 }}
+  exit={{ y: -50, opacity: 0 }}
+  transition={{ duration: 0.6, ease: "easeInOut" }}
+  className="bg-white text-black w-[95%] max-w-[500px] h-auto max-h-[95vh] rounded-2xl p-6 sm:p-10 relative overflow-y-auto"
+  onClick={(e) => e.stopPropagation()}
+>
+
+  
         {/* Botão de fechar */}
         <button
           onClick={() => setMenuOpen(false)}
