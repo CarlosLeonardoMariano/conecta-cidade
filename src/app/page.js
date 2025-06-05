@@ -208,7 +208,7 @@ export default function Home() {
           </motion.h2>
           <div className="h-1 w-24 bg-white mx-auto rounded-full mb-12 animate-pulse" />
 
-          <motion.div initial={{x:300, opacity:0}}
+          <motion.div initial={{y:0, opacity:0}}
           whileInView={{x:0, opacity:1}}
           transition={{duration:1, ease: "easeIn"}}
             viewport={{ once: false }}
