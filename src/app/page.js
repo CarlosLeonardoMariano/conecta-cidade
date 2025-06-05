@@ -50,36 +50,51 @@ export default function Home() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center"
+      className="fixed inset-0 bg-white backdrop-blur-sm z-50 flex items-center justify-center "
       onClick={() => setMenuOpen(false)}
     >
-     <motion.div
-  initial={{ y: -100, x: 200, opacity: 0 }}
-  animate={{ y: 0, x: 0, opacity: 1 }}
-  exit={{ y: -50, opacity: 0 }}
-  transition={{ duration: 0.6, ease: "easeInOut" }}
-  className="bg-white text-black w-[95%] max-w-[500px] h-auto max-h-[95vh] rounded-2xl p-6 sm:p-10 relative overflow-y-auto"
-  onClick={(e) => e.stopPropagation()}
->
-
-  
+      <motion.div
+        initial={{ y: -100, x: 200, opacity: 0 }}
+        animate={{ y: 0, x: 0, opacity: 1 }}
+        exit={{ y: -50, opacity: 0 }}
+        transition={{ duration: 0.6, ease: "easeInOut" }}
+        onClick={(e) => e.stopPropagation()}
+        className="
+          bg-white text-black 
+          w-full h-full
+          md:w-3/5 md:h-4/5
+          max-w-none max-h-none
+          rounded-none md:rounded-3xl
+          p-6 sm:p-10
+          relative
+          overflow-y-auto
+          shadow-2xl
+          flex flex-col
+        "
+      >
         {/* Botão de fechar */}
         <button
           onClick={() => setMenuOpen(false)}
-          className="absolute top-4 right-6 text-3xl text-gray-600 hover:text-red-600 font-extrabold"
+          className="
+            absolute top-6 right-6
+            text-3xl text-gray-600 hover:text-red-600 font-extrabold
+            md:top-8 md:right-8
+            z-50
+          "
+          aria-label="Fechar menu"
         >
           ✕
         </button>
 
         {/* Conteúdo */}
-        <div className="text-center ">
+        <div className="text-center flex-grow overflow-auto">
           <h2 className="text-4xl font-bold mb-3">Bem-vindo ao Conecta Cidade</h2>
           <p className="text-gray-600 max-w-xl mx-auto mb-8">
             Acesse rapidamente nossas seções e descubra como conectamos você ao melhor da sua cidade.
           </p>
 
           {/* Navegação */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-lg font-medium mb-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6 text-lg font-medium mb-10 justify-items-center max-w-full mx-auto">
             <a href="#sobre" onClick={() => setMenuOpen(false)} className="hover:underline">🧭 Sobre</a>
             <a href="#vantagens" onClick={() => setMenuOpen(false)} className="hover:underline">⚡ Vantagens</a>
             <a href="#servicos" onClick={() => setMenuOpen(false)} className="hover:underline">🛠 Serviços</a>
@@ -141,7 +156,7 @@ export default function Home() {
 
 
           <motion.p 
-          initial={{x:300, opacity:0}}
+          initial={{x:-300, opacity:0}}
           whileInView={{x:0, opacity:1}}
           transition={{duration:1, ease: "easeIn"}}
             viewport={{ once: false }}
