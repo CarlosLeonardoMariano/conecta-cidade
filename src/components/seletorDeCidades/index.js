@@ -1,12 +1,11 @@
 "use client";
 import { useState } from "react";
 
-export default function SeletorDeCidade() {
-  const [cidadeSelecionada, setCidadeSelecionada] = useState("");
+export default function SeletorDeCidade({ cidadeSelecionada, setCidadeSelecionada }) {
   const [search, setSearch] = useState("");
   const [dropdownAberto, setDropdownAberto] = useState(false);
 
-  const cidades = ["Piracaia - SP"];
+  const cidades = ["Piracaia - SP", "Bragança - Paulista"];
 
   const cidadesFiltradas = cidades.filter((cidade) =>
     cidade.toLowerCase().includes(search.toLowerCase())

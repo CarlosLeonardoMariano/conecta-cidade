@@ -4,6 +4,11 @@ import SeletorDeCidade from "@/components/seletorDeCidades";
 import { FaFacebook, FaInstagram, FaWhatsapp } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+
+
+
+
 
 function scrollSmoth() {
   const scroll = document.getElementById("sobre");
@@ -24,12 +29,24 @@ function scroolRodape() {
 
 
 export default function Home() {
+  const router = useRouter();
 
     const [menuOpen, setMenuOpen] = useState(false);
+      const [cidadeSelecionada, setCidadeSelecionada] = useState("");
+
+
+
+function handleBuscar() {
+  if (!cidadeSelecionada) {
+      alert("Escolha a cidade que você deseja buscar");
+  }
+
+  router.push('/comercios');
+}
+
+
+
   return (
-
-
-    
     <main>
       {/* Botão fixo */}
     
@@ -97,21 +114,16 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6 text-lg font-medium mb-10 justify-items-center max-w-full mx-auto">
             <a href="#sobre" onClick={() => setMenuOpen(false)} className="hover:underline">🧭 Sobre</a>
             <a href="#vantagens" onClick={() => setMenuOpen(false)} className="hover:underline">⚡ Vantagens</a>
-            <a href="#servicos" onClick={() => setMenuOpen(false)} className="hover:underline">🛠 Serviços</a>
-            <a href="#comercios" onClick={() => setMenuOpen(false)} className="hover:underline">🏪 Comerciantes</a>
+            <a href="#sobreComercio" onClick={() => setMenuOpen(false)} className="hover:underline">🛠 Serviços</a>
+            <a href="#sobre" onClick={() => setMenuOpen(false)} className="hover:underline">🏪 Comerciantes</a>
             <a href="#faq" onClick={() => setMenuOpen(false)} className="hover:underline">❓ FAQ</a>
             <a href="#rodape" onClick={() => setMenuOpen(false)} className="hover:underline">📞 Contato</a>
           </div>
 
-          {/* Botões de ação */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
-            <button className="bg-black text-white px-6 py-2 rounded-full hover:bg-gray-800 transition">
-              Entrar
-            </button>
-            <button className="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition">
-              Cadastrar-se
-            </button>
-          </div>
+       
+
+
+
 
           {/* Redes sociais */}
           <div className="flex justify-center gap-6 mb-6">
@@ -135,6 +147,8 @@ export default function Home() {
     </motion.div>
   )}
 </AnimatePresence>
+
+
 
 
 
@@ -190,9 +204,9 @@ export default function Home() {
           
           className="w-full h-full flex items-center justify-center pt-5 bg-[#f7f7f7] flex-col gap-4" id="sobre">
         <Image
-          src="/logo.jpeg"
+          src="/logo3.png"
           alt="Logo da plataforma Conecta Cidade"
-          width={250}
+          width={300}
           height={200}
           className="cursor-pointer"
         />
@@ -205,11 +219,18 @@ export default function Home() {
           </p>
         </div>
         <div className="w-full min-h-[400px] flex flex-col items-center gap-20">
-          <SeletorDeCidade />
-          <button className="text-center font-roboto bg-black text-white px-6 py-4 rounded-full">
+          <SeletorDeCidade 
+          cidadeSelecionada={cidadeSelecionada}
+          setCidadeSelecionada={setCidadeSelecionada}/>
+
+
+          <button className={`text-center font-roboto bg-black text-white px-6 py-4 rounded-full 
+          ${ !cidadeSelecionada ? "opacity-50 cursor-not-allowed" : "hover:bg-gray-800" } `} onClick={handleBuscar} disabled={!cidadeSelecionada}>
             Buscar comércios
           </button>
         </div>
+
+
       </motion.section>
 
       {/* VANTAGENS */}
@@ -220,7 +241,7 @@ export default function Home() {
           transition={{duration:1, ease: "easeIn"}}
             viewport={{ once: false }} 
             
-            className="text-3xl sm:text-4xl font-bold font-montserrat text-white mb-4">
+            className="text-3xl sm:text-4xl font-bold font-montserrat text-white mb-4" id="sobreComercio">
             Por que usar o Conecta Cidade?
           </motion.h2>
           <div className="h-1 w-24 bg-white mx-auto rounded-full mb-12 animate-pulse" />
@@ -238,6 +259,7 @@ export default function Home() {
               { icon: "🛒", title: "Compre com facilidade", text: "Navegue por lojas e faça pedidos direto da plataforma, sem complicações." },
               { icon: "🌟", title: "Avaliações reais", text: "Veja comentários de outros usuários e escolha com confiança." },
               { icon: "🔒", title: "Segurança garantida", text: "Seus dados e interações protegidos com criptografia e segurança de ponta." }
+
             ].map((item, index) => (
               <div key={index} className="flex flex-col items-center text-center">
                 <div className="w-16 h-16 bg-white text-black rounded-full flex items-center justify-center text-2xl mb-4">
@@ -245,13 +267,54 @@ export default function Home() {
                 </div>
                 <h3 className="text-lg font-semibold">{item.title}</h3>
                 <p className="text-gray-300 mt-2 text-sm">{item.text}</p>
+
               </div>
-              
             ))}
 
           </motion.div>
-
         </div>
+
+                                
+                          {/* Para Comerciantes */}
+                          <div className="mt-20 max-w-6xl mx-auto px-4 text-center">
+                            <motion.h2
+                              initial={{ x: -300, opacity: 0 }}
+                              whileInView={{ x: 0, opacity: 1 }}
+                              transition={{ duration: 1, ease: "easeIn" }}
+                              viewport={{ once: false }}
+                              className="text-3xl sm:text-4xl font-bold font-montserrat text-white mb-4"
+                            >
+                      "Potencialize suas vendas com o Conecta Cidade"
+                            </motion.h2>
+                            <div className="h-1 w-24 bg-white mx-auto rounded-full mb-12 animate-pulse" />
+
+                            <motion.div
+                              initial={{ y: 100, opacity: 0 }}
+                              whileInView={{ y: 0, opacity: 1 }}
+                              transition={{ duration: 1, ease: "easeInOut" }}
+                              viewport={{ once: false }}
+                              className="grid grid-cols-1 sm:grid-cols-3 gap-16"
+                            >
+                              {[
+                                { icon: "💼", title: "Ganhe visibilidade", text: "Apareça para moradores da sua cidade e aumente sua clientela." },
+                                { icon: "📊", title: "Painel de controle", text: "Gerencie pedidos, produtos e promoções em tempo real." },
+                                { icon: "💬", title: "Fale com clientes", text: "Receba pedidos e mensagens diretamente pelo WhatsApp." },
+                                { icon: "🎯", title: "Marketing local", text: "Divulgue sua loja de forma direcionada para seu público." },
+                                { icon: "💸", title: "Mais vendas", text: "Transforme visitantes em clientes com poucos cliques." },
+                                { icon: "🔧", title: "Fácil de usar", text: "Não precisa de conhecimentos técnicos para cadastrar sua loja." }
+                              ].map((item, index) => (
+                                <div key={index} className="flex flex-col items-center text-center">
+                                  <div className="w-16 h-16 bg-white text-black rounded-full flex items-center justify-center text-2xl mb-4">
+                                    {item.icon}
+                                  </div>
+                                  <h3 className="text-lg font-semibold">{item.title}</h3>
+                                  <p className="text-gray-300 mt-2 text-sm">{item.text}</p>
+                                </div>
+                              ))}
+                            </motion.div>
+                          </div>
+                        {/* Fim Para Comerciantes */}
+   
 
                  <div className="mt-12 flex justify-center">
                     <button onClick={scroolRodape} className="animate-bounce">
