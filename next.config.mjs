@@ -15,10 +15,11 @@ const nextConfig = {/** @type {import('next').NextConfig} */
     ],
   },
 
-    eslint: {
-    ignoreDuringBuilds: true, // 👈 isso ignora os erros de lint no deploy
-  },
-  
+  eslint: {
+  ignoreDuringBuilds: true,
+},
+
+
 };
 
 export default nextConfig;
