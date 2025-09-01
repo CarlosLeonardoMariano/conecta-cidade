@@ -284,7 +284,7 @@ function handleBuscar() {
                               viewport={{ once: false }}
                               className="text-3xl sm:text-4xl font-bold font-montserrat text-white mb-4"
                             >
-                      "Potencialize suas vendas com o Conecta Cidade"
+                      Potencialize suas vendas com o Conecta Cidade
                             </motion.h2>
                             <div className="h-1 w-24 bg-white mx-auto rounded-full mb-12 animate-pulse" />
 
